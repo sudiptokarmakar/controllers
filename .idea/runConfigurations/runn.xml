@@ -15,7 +15,7 @@
     <option name="ADD_SOURCE_ROOTS" value="true" />
     <option name="RUN_TOOL" value="" />
     <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../source/odoo-bin" />
-    <option name="PARAMETERS" value="-c odoo.conf -u basic_module -d test_database2" />
+    <option name="PARAMETERS" value="-c odoo.conf -u basic_module -d test_database3" />
     <option name="SHOW_COMMAND_LINE" value="false" />
     <option name="EMULATE_TERMINAL" value="false" />
     <option name="MODULE_MODE" value="false" />

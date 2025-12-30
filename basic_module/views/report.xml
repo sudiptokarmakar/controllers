@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="my_report_custom">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h2>TITLE FOR YOUR REPORT</h2>
+                    <!--
+                    Build your report here!
+                    Do it in awesome way ;)
+                    -->
+                </div>
+            </t>
+        </t>
+    </template>
+    <record id="_action_of_report" model="ir.actions.report">
+        <field name="name">card</field>
+        <field name="model">model_parent</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">basic_module.my_report_custom</field>
+        <field name="report_file">basic_module.my_report_custom</field>
+        <field name="print_report_name">'report'</field>
+        <field name="binding_model_id" ref="model_model_parent"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

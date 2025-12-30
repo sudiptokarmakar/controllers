@@ -1,54 +1,53 @@
 <odoo>
-  <data>
-    <!-- explicit list view definition -->
-    <record model="ir.ui.view" id="view_parent.form">
-      <field name="name">basic_module form</field>
-      <field name="model">basic_module.model_parent</field>
-      <field name="arch" type="xml">
-        <form>
-          <field name="name"/>
-          <field name="value"/>
-        </form>
-      </field>
-    </record>
+    <data>
+<!--         explicit list view definition -->
+<!--            <record model="ir.ui.view" id="view_parent.form">-->
+<!--              <field name="name">basic_module form</field>-->
+<!--              <field name="model">model_parent</field>-->
+<!--              <field name="arch" type="xml">-->
+<!--                <form>-->
+<!--                  <field name="name"/>-->
+<!--                  <field name="value"/>-->
+<!--                </form>-->
+<!--              </field>-->
+<!--            </record>-->
 
-    <!-- actions opening views on models -->
-<!--
-    <record model="ir.actions.act_window" id="basic_module.action_window">
-      <field name="name">basic_module window</field>
-      <field name="res_model">basic_module.basic_module</field>
-      <field name="view_mode">list,form</field>
-    </record>
--->
+        <!-- actions opening views on models -->
 
-    <!-- server action to the one above -->
-<!--
-    <record model="ir.actions.server" id="basic_module.action_server">
-      <field name="name">basic_module server</field>
-      <field name="model_id" ref="model_basic_module_basic_module"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "list,form",
-          "res_model": model._name,
-        }
-      </field>
-    </record>
--->
+            <record model="ir.actions.act_window" id="basic_module.action_window">
+              <field name="name">basic_module window</field>
+              <field name="res_model">model_parent</field>
+              <field name="view_mode">list,form</field>
+            </record>
 
-    <!-- Top menu item -->
-    <menuitem name="basic_module" id="basic_module.menu_root"/>
-    <!-- menu categories -->
-    <menuitem name="parent" id="basic_module.menu_1" parent="basic_module.menu_root"/>
-    <menuitem name="child" id="basic_module.menu_2" parent="basic_module.menu_root"/>
 
-    <!-- actions -->
-<!--
-    <menuitem name="List" id="basic_module.menu_1_list" parent="basic_module.menu_1"
-              action="basic_module.action_window"/>
-    <menuitem name="Server to list" id="basic_module" parent="basic_module.menu_2"
-              action="basic_module.action_server"/>
--->
-  </data>
+        <!-- server action to the one above -->
+
+<!--            <record model="ir.actions.server" id="basic_module.action_server">-->
+<!--              <field name="name">basic_module server</field>-->
+<!--              <field name="model_id" ref="model_basic_module_basic_module"/>-->
+<!--              <field name="state">code</field>-->
+<!--              <field name="code">-->
+<!--                action = {-->
+<!--                  "type": "ir.actions.act_window",-->
+<!--                  "view_mode": "list,form",-->
+<!--                  "res_model": model._name,-->
+<!--                }-->
+<!--              </field>-->
+<!--            </record>-->
+
+
+        <!-- Top menu item -->
+        <menuitem name="basic_module" id="basic_module.menu_root"/>
+        <!-- menu categories -->
+        <menuitem name="parent" id="basic_module.menu_1" parent="basic_module.menu_root"/>
+        <menuitem name="child" id="basic_module.menu_2" parent="basic_module.menu_root"/>
+
+        <!-- actions -->
+
+            <menuitem name="List" id="basic_module.menu_1_list" parent="basic_module.menu_1"
+                      action="basic_module.action_window"/>
+<!--            <menuitem name="Server to list" id="basic_module" parent="basic_module.menu_2"-->
+<!--                      action="basic_module.action_server"/>-->
+    </data>
 </odoo>
