@@ -58,11 +58,11 @@
                 </nav>
             </header>
         </xpath>
-        <xpath expr="//main" position="replace">
-            <main>
-                <p>body here</p>
-            </main>
-        </xpath>
+<!--        <xpath expr="//main" position="replace">-->
+<!--            <main>-->
+<!--                <p>body here</p>-->
+<!--            </main>-->
+<!--        </xpath>-->
         <xpath expr="//footer" position="replace">
             <footer>footer here</footer>
         </xpath>

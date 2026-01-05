@@ -1,24 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+    <!--todo
+
+        t-call:- to inherit and use template that already present
+        all are html escape element
+        >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+        t-field:- to print variables of model
+                  must be like record.field_name
+                  prints not raw but fomatted if a record have amount 100 ->>>>$100
+                  good for printing model values
+                  expression not supported amount * amount ->>> error
+       t-esc:- to print raw python expression like if a record have amount 100 ->>>>100
+                  expression supported amount * amount ->>> 1000
+       t-out:- modern version of t-esc (same)
+                 expression supported amount * amount ->>> 1000
+                 best for calculation,strings,coditions
+       t-set:- used to create or update variable
+               <t t-set="variable_name" t-value="expression"/>
+               in value we can perfrom anything of python like createing list,dict
+       >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+       html rendadring
+       t-raw:- supports html content to print if <h1>hi</hi>
+       >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+       conditions
+       t-if:- checks the cnodition if true then only the element is rendered
+       t-elif:- checks the cnodition if true then only the element is rendered
+       t-else:- if t-if fails then what to do we have to give the value blank (t-else="" what to do)
+       <p t-if="user.state == 'active'">User is active.</p>
+       <p t-elif="user.state == 'pending'">User is pending approval.</p>
+       <p t-else="">User is inactive.</p>
+       >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+       loops
+       t-foreach:-runs a loop we can access a single as t-as
+       >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+       attribute changing
+       t-att-<atribute_name> used to change the attribute of a tag
+       attribute ex:- src,href,class,id
+       best for python expression and use fstring not for custom link
+       we can add a class by this
+       <div t-att-class="'active' if is_active else ''">
+
+       **t-attf-<attribute_name>:- same but best for custom link **not variables
+
+       -->
+    <!--!doc refers to running instance or current record of the current form view used to get variable of the doc using foreach-->
+
+    <!--?    for study-->
     <template id="my_report_custom">
         <t t-call="web.html_container">
-            <t t-call="web.external_layout">
-                <div class="page">
-                    <h2>TITLE FOR YOUR REPORT</h2>
-                    <!--
-                    Build your report here!
-                    Do it in awesome way ;)
-                    -->
+            <!--            &lt;!&ndash;        replaces base of pdf need to be called must(for scratch)&ndash;&gt;-->
+
+            <!--        <t t-call="web.external_layout">-->
+            <!--                &lt;!&ndash;        replaces body of the pdf without changing logo and tagline(logo & tagline included)&ndash;&gt;-->
+            <!--                &lt;!&ndash;            custom code here&ndash;&gt;-->
+            <!--                <t t-foreach="docs" t-as="doc">-->
+            <!--                    <div class="page">-->
+            <!--                        &lt;!&ndash;                        <h2>TITLE FOR YOUR REPORT</h2>&ndash;&gt;-->
+            <!--                        &lt;!&ndash;                        <p t-esc="doc.name"/>&ndash;&gt;-->
+            <!--                        &lt;!&ndash;                        <p t-out="doc.value + doc.value"/>&ndash;&gt;-->
+            <!--                        &lt;!&ndash;                        <t t-set="hi" t-value="1234"/>&ndash;&gt;-->
+            <!--                        &lt;!&ndash;                        <p t-out="hi"/>&ndash;&gt;-->
+            <!--                        &lt;!&ndash;                    <p t-field="name"/>&ndash;&gt;-->
+
+            <!--                        <t t-if="doc.name=='sudipto'">-->
+            <!--                            <p>welcome-->
+            <!--                                <span t-out="doc.name"/>-->
+            <!--                            </p>-->
+            <!--                            <a t-att="">click to go on facebook</a>-->
+            <!--                        </t>-->
+            <!--                    </div>-->
+            <!--                </t>-->
+            <!--            </t>-->
+            <div class="header">
+                <p>header here</p>
+            </div>
+            <div class="footer">
+                <p>footer here</p>
+            </div>
+            <div class="main">
+                <p>hello</p>
+                <t t-out="0"/>
+            </div>
+        </t>
+    </template>
+    <!--?   report format-->
+    <template id="template_report_format">
+        <t t-call="web.html_container">
+            <div class="header">
+                <p>Student Id Card</p>
+            </div>
+            <div class="main">
+                <t t-out="0"/>
+            </div>
+            <div class="footer">
+                <p>thanking you</p>
+            </div>
+        </t>
+    </template>
+    <!--?   report generation-->
+    <template id="student_report">
+        <t t-call="basic_module.template_report_format">
+            <t t-foreach="docs" t-as="doc">
+                <div style="">
+                    <h1 t-field="doc.name" style="font-size:3rem;" class="text-primary"></h1>
+                    <span class="text-primary">hi bro</span>
                 </div>
             </t>
         </t>
     </template>
+
     <record id="_action_of_report" model="ir.actions.report">
-        <field name="name">card</field>
+        <field name="name">Download Pdf</field>
         <field name="model">model_parent</field>
         <field name="report_type">qweb-pdf</field>
-        <field name="report_name">basic_module.my_report_custom</field>
-        <field name="report_file">basic_module.my_report_custom</field>
+        <field name="report_name">basic_module.student_report</field>
+        <field name="report_file">basic_module.student_report</field>
         <field name="print_report_name">'report'</field>
         <field name="binding_model_id" ref="model_model_parent"/>
         <field name="binding_type">report</field>
